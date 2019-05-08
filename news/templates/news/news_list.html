@@ -3,15 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Últimas notícias</title>
+    <style>
+        img {
+            display: inline-block;
+        }
+        .conteudo {
+            display: inline-block;
+        }
+        h3 {
+            display: block;
+            margin-top: 0px;
+        }
+        span {
+            margin-top: -10px;
+        }
+    </style>
 </head>
 <body>
     <h1>Últimas notícias</h1>
     <div class="news">
         {% for noticia in news %}
             <div class="noticia">
-                <p>
-                <img height="60" width="60" src={{ noticia.imagem_jornal }}> {{ noticia.hora }} <a href="{{ noticia.link }}">{{ noticia.title }}</a>
-                </p>
+                <div style="margin-bottom: 15px">
+                    <img height="55" width="55" src={{ noticia.imagem_jornal }}>
+                    <div class="conteudo">
+                        <h3>{{ noticia.hora }}</h3>
+                        <span><a href="{{ noticia.link }}">{{ noticia.title }}</a></span>
+                    </div>
+                </div>
             </div>
         {% endfor %}
     </div>

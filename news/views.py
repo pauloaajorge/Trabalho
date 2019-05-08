@@ -7,6 +7,7 @@ from requests.exceptions import RequestException
 from contextlib import closing
 from bs4 import BeautifulSoup
 
+
 # Create your views here.
 def news_list(request):
     news = News.objects.all().order_by('-hora')
@@ -369,15 +370,19 @@ def scrape():
     jornal_de_negocios()
     correio_da_manha()
     jornal_economico()
+    print('5/16 jornais procurados')
     sabado()
     diario_de_noticias()
     jornal_de_noticias()
     expresso()
     a_bola()
+    print('10/16 jornais procurados')
     o_jogo()
     record()
-    # eco()
+    eco()
     dinheiro_vivo()
     i_online()
+    print('15/16 jornais procurados')
     sol()
+    print('16/16 jornais procurados')
 scrape()
