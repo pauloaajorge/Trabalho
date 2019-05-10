@@ -8,14 +8,4 @@ Python, Django and Web Scraping
   + [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
   + [Django](https://www.djangoproject.com/)
   
-2. 
-
-3. python manage.py runserver 127.0.0.1:8000
-
-4. 
-
-
-
-python manage.py makemigrations <your app name>
-python manage.py migrate
-python manage.py createsuperuser
+2. Correr o código: 'python manage.py runserver 127.0.0.1:8000'
