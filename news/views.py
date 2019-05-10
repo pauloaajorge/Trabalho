@@ -111,11 +111,11 @@ def correio_da_manha():
     print(r.status_code)
     raw_html = simple_get('https://www.cmjornal.pt/')
     soup = BeautifulSoup(raw_html, 'html.parser')
-    artigos = soup.find("div", class_="ultimas_noticias lista_ultimas").find("ul").find_all("li")
+    artigos = soup.find("section", id="ultimasHp_move").find("ul").find_all("li")
     for artigo in artigos:
-        tempo = artigo.find("span", class_="ultimas_noticias_date").get_text()
+        tempo = artigo.find("span", class_="hora").get_text()
         hiperligacao = "https://www.cmjornal.pt" + artigo.find("a").get('href')
-        titulo = artigo.find("a").get('title')
+        titulo = artigo.find("a", class_="newsTitle").get_text().strip()
 
         nova_noticia = News()
         nova_noticia.title = titulo
