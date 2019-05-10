@@ -6,7 +6,8 @@ import json
 from requests.exceptions import RequestException
 from contextlib import closing
 from bs4 import BeautifulSoup
-
+from datetime import timedelta
+import datetime
 
 # Create your views here.
 def news_list(request):
@@ -112,8 +113,16 @@ def correio_da_manha():
     raw_html = simple_get('https://www.cmjornal.pt/')
     soup = BeautifulSoup(raw_html, 'html.parser')
     artigos = soup.find("section", id="ultimasHp_move").find("ul").find_all("li")
+    tempo_now_datetime = datetime.datetime.now()
+    tempo_now_string = tempo_now_datetime.strftime('%H:%M')
     for artigo in artigos:
-        tempo = artigo.find("span", class_="hora").get_text()
+        if len(artigo.find("span", class_="hora").get_text()) == 5:
+            tempo = artigo.find("span", class_="hora").get_text()
+        else:
+            minutos_atras = artigo.find("span", class_="hora").get_text().replace("Há ", "").replace(" minutos", "")
+            time = datetime.datetime.strptime(minutos_atras, '%M')
+            delta = timedelta(minutes=time.minute)
+            tempo = (tempo_now_datetime - delta).strftime('%H:%M')
         hiperligacao = "https://www.cmjornal.pt" + artigo.find("a").get('href')
         titulo = artigo.find("a", class_="newsTitle").get_text().strip()
 
