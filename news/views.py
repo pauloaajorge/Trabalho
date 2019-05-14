@@ -307,6 +307,9 @@ def eco():
         titulo = artigo.find("a").find('p').get_text().strip()
         tempo = artigo.find("time").get_text()
 
+        if len(tempo) == 4:
+            tempo = "0" + tempo
+
         nova_noticia = News()
         nova_noticia.title = titulo
         nova_noticia.link = hiperligacao
